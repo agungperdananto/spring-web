@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>People data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "person: ${people}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.age}"></td>
+                <td th:text="${person.weight}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
