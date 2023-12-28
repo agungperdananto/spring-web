@@ -13,16 +13,14 @@
         <form action="#" method="post" th:action="${processLogin}" th:object="${loginModel}">
             <div class="mb-3">
               <label for="inputUsername" class="form-label">Username</label>
-              <input th:field="*{username}" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="username" class="form-text">We'll never share your data with anyone else.</div>
+              <input th:field="*{username}" type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp">
+              <div class="form-text">We'll never share your data with anyone else.</div>
+              <p class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
             </div>
             <div class="mb-3">
               <label for="inputPassword" class="form-label">Password</label>
-              <input th:field="*{password}" type="text" class="form-control" id="password">
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              <input th:field="*{password}" type="text" class="form-control" id="password" name="password">
+              <p class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
           </form>
