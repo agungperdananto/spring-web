@@ -67,6 +67,7 @@ public class DummyController {
 
         return "personlist";
     }
+
     @GetMapping("/api/people")
     @ResponseBody
     public List<Person> peopleAPI() {

@@ -1,7 +1,5 @@
 package com.github.springweb.controllers;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +18,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/login")
 public class LoginController {
 
-    @GetMapping("/")
+    @GetMapping
     public String displayLoginForm(Model model){
 
         model.addAttribute("loginModel", new Login());
@@ -28,7 +26,7 @@ public class LoginController {
     
     }
 
-    @PostMapping("/")
+    @PostMapping
     public String processLogin(@Valid @ModelAttribute("loginModel") Login login, BindingResult bindingResult, Model model){
         
         if (bindingResult.hasErrors()){

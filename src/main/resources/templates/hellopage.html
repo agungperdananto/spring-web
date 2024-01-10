@@ -1,18 +1,16 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Hello</title>
-</head>
+<html layout:decorate=~{layouts/base}>
 <body>
-    <h1 th:inline="text">[[${title}]]</h1>
-    <p>this is a greeting from us</p>
-    <div>
-        <ul>
-            <li>rating: <span th:text="${rating}"></span></li>
-            <li><span>:</span><span></span></li>
-            <li><span>:</span><span></span></li>
-        </ul>
+    <div layout:fragment="content">
+        <h1 th:inline="text">[[${title}]]</h1>
+        <p>this is a greeting from us</p>
+        <div>
+            <ul>
+                <li>rating: <span th:text="${rating}"></span></li>
+                <li><span>:</span><span></span></li>
+                <li><span>:</span><span></span></li>
+            </ul>
+        </div>
     </div>
+    
 </body>
 </html>
