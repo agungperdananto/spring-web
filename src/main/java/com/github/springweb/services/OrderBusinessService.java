@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderBusinessService implements OrdersBusinessServiceInterface{
 
     @Autowired
-    OrderDataAccessInterface ordersDAO;
+    OrderDataAccessInterface<Order> ordersDAO;
 
     @Override
     public void test() {

@@ -2,17 +2,16 @@ package com.github.springweb.data;
 
 import java.util.List;
 
-import com.github.springweb.models.Order;
 
-public interface OrderDataAccessInterface {
+public interface OrderDataAccessInterface <T>{
 
-    public Order getbyId(long id);
-    public List<Order> getOrders();
-    public List<Order> searchOrders(String keyword);
+    public T getbyId(long id);
+    public List<T> getOrders();
+    public List<T> searchOrders(String keyword);
 
-    public long createOrder(Order newOrder);
+    public long createOrder(T newOrder);
 
     public boolean deleteOrder(long id);
 
-    public Order updateOrder(long id, Order updateOrder);
+    public T updateOrder(long id, T updateOrder);
 }

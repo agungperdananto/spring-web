@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Repository;
-
 import com.github.springweb.models.Order;
 
-@Repository
-public class OrdersFakeDAO implements OrderDataAccessInterface{
+
+public class OrdersFakeDAO implements OrderDataAccessInterface<Order>{
 
     List<Order> orders = new ArrayList<Order>();
 

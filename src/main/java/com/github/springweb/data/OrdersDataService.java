@@ -7,18 +7,14 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Repository;
 
 import com.github.springweb.models.Order;
 import com.github.springweb.models.OrdersMapper;
 
 
-@Repository
-@Primary
-public class OrdersDataService implements OrderDataAccessInterface {
+public class OrdersDataService implements OrderDataAccessInterface<Order> {
 
     @Autowired
     DataSource dataSource;
