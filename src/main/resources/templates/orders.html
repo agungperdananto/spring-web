@@ -1,15 +1,15 @@
 <html layout:decorate=~{layouts/base}>
 <body>
-    <div layout:fragment="content">
+    <div layout:fragment="content" class="container-fluid">
         <h2 th:text="${title}"></h2>
     <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">Id</th>
-            <th scope="col">Order No</th>
+            <th scope="col">Order Number</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Qty</th>
+            <th scope="col">Quantity</th>
           </tr>
         </thead>
         <tbody>

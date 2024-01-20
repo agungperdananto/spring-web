@@ -16,7 +16,7 @@ public class OrderEntity {
 
     @Id
     @Column("id")
-    int id = 0;
+    int id;
 
     @Column("order_number")
     String orderNo = "";
