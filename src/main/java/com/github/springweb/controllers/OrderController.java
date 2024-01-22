@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.springweb.models.Order;
+import com.github.springweb.models.Search;
 import com.github.springweb.services.OrdersBusinessServiceInterface;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -66,6 +69,21 @@ public class OrderController {
 
         model.addAttribute("order", new Order());
         return "newOrderForm.html";
+    }
+    
+    @GetMapping("/search")
+    public String searchPage(Model model) {
+        model.addAttribute("searchModel", new Search());
+        return "searchPage";
+    }
+
+    @PostMapping("/search")
+    public String search(@Valid Search newSearch, BindingResult bindingResult, Model model) {
+        List<Order> orders = service.searchOrders(newSearch.getKeyword());
+
+        model.addAttribute("orders", orders);
+
+        return "orders";
     }
     
 }

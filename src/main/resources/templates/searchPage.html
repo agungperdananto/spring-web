@@ -1,0 +1,11 @@
+<html layout:decorate=~{layouts/base}>
+<body>
+    <div layout:fragment="content"  class="container mt-3 pt-3">
+        <form th:action="@{/orders/search}" method="post" action="#" class="d-flex" role="search" th:object="${searchModel}">
+            <input th:field="*{keyword}" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+    </div>
+    
+</body>
+</html>
