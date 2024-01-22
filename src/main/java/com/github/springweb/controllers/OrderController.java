@@ -5,11 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.github.springweb.models.Order;
 import com.github.springweb.services.OrdersBusinessServiceInterface;
+
+import jakarta.validation.Valid;
+
 
 
 @Controller
@@ -30,7 +35,7 @@ public class OrderController {
     // }
 
     @GetMapping
-    public String showAllOrders(Model model) {
+    public String get(Model model) {
 
         // generate orders
 
@@ -43,4 +48,24 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "orders.html";
     }
+
+    @PostMapping
+    public String post(@Valid Order newOrder, BindingResult bindingResult, Model model){
+
+        // add new data
+        service.createOrder(newOrder);
+        List<Order> orders = service.getOrders();
+
+        model.addAttribute("orders", orders);
+
+        return "orders";
+    }
+
+    @GetMapping("/create")
+    public String createNewOrder(Model model) {
+
+        model.addAttribute("order", new Order());
+        return "newOrderForm.html";
+    }
+    
 }
