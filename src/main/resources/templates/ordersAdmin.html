@@ -22,7 +22,7 @@
                 <td ><span>πç </span><span th:text=" ${order.price}"></span></td>
                 <td th:text="${order.qty}">Qty</td>
                 <td>
-                    <form action="#" th:action="@{/orders}" th:object="${order}" method="delete">
+                    <form action="#" th:action="@{/orders/delete}" th:object="${order}" method="post">
                         <input name="id" type="hidden" th:value="${order.id}">
                         <input name="orderNo"type="hidden" th:value="${order.orderNo}">
                         <input name="productName"type="hidden" th:value="${order.productName}">

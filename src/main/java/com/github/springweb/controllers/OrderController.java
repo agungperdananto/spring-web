@@ -79,6 +79,18 @@ public class OrderController {
         return "ordersAdmin";
     }
 
+    @PostMapping("/delete")
+    public String delete( @Valid Order order, BindingResult bindingResult, Model model) {
+
+        service.deleteOrder(order.getId());
+
+        List<Order> orders = service.getOrders();
+
+        model.addAttribute("orders", orders);
+        
+        return "ordersAdmin";
+    }
+
     @GetMapping("/create")
     public String createNewOrder(Model model) {
 
