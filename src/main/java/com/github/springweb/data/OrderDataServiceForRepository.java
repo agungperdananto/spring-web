@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.github.springweb.models.Order;
 import com.github.springweb.models.OrderEntity;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.ruleEntry_return;
+
 
 public class OrderDataServiceForRepository implements OrderDataAccessInterface<Order>{
 
@@ -90,18 +92,25 @@ public class OrderDataServiceForRepository implements OrderDataAccessInterface<O
 
     @Override
     public boolean deleteOrder(long id) {
-        ordersRepository.deleteById(id);
-        return true;
+
+        if (ordersRepository.existsById(id)){
+            ordersRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Order updateOrder(long id, Order updateOrder) {
-        updateOrder.setId(id);
-        OrderEntity orderEntity = modelMapper.map(updateOrder, OrderEntity.class);
-        OrderEntity result = ordersRepository.save(orderEntity);
-        Order order = modelMapper.map(result, Order.class);
+        if (ordersRepository.existsById(id)){
+            updateOrder.setId(id);
+            OrderEntity orderEntity = modelMapper.map(updateOrder, OrderEntity.class);
+            OrderEntity result = ordersRepository.save(orderEntity);
+            Order order = modelMapper.map(result, Order.class);
 
-       return order;
+            return order;
+        }
+        return null;
     }
 
 }
