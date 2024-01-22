@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -130,10 +131,9 @@ public class OrderController {
     
 
     @GetMapping("/edit/{id}")
-    public String editPage(@PathVariable(name="id") Long id, Model model) {
+    public String editPage(@PathVariable(name="id") Long id, @ModelAttribute("loginModel") Order order, Model model) {
         
-        
-        Order order = service.getbyId(id);
+        order = service.getbyId(id);
         model.addAttribute("order", order);
         
         return "editForm";

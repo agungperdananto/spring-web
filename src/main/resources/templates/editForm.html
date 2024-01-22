@@ -9,30 +9,30 @@
             <div class="mb-3">
               <label for="inputOrderNumber" class="form-label">Order Number</label>
               <input th:field="*{orderNo}" type="text" class="form-control" id="inputOrderNumber">
-              <!-- <div class="fieldError">
-                <p th: if="${#fields.hasErrors('orderNo')}" th:errors="*{orderNo}">Order Number Error</p>
-                </div> -->
+              <div class="fieldError">
+                <p th:if="${#fields.hasErrors('orderNo')}" th:errors="*{orderNo}">Order Number Error</p>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="inputProductName" class="form-label">Product Name</label>
                 <input th:field="*{productName}" type="text" class="form-control" id="inputProductName">
-                <!-- <div class="fieldError">
-                    <p th: if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Product Name Error</p>
-                    </div> -->
+                <div class="fieldError">
+                    <p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Product Name Error</p>
+                    </div>
               </div>
             <div class="mb-3">
                 <label for="inputPrice" class="form-label">Price</label>
                 <input th:field="*{price}" type="number" class="form-control" id="inputPrice">
-                <!-- <div class="fieldError">
-                    <p th: if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
-                    </div> -->
+                <div class="fieldError">
+                    <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+                    </div>
               </div>
             <div class="mb-3">
                 <label for="inputQty" class="form-label">Quantity</label>
                 <input th:field="*{qty}" type="number" class="form-control" id="inputQty">
-                <!-- <div class="fieldError">
-                    <p th: if="${#fields.hasErrors('qty')}" th:errors="*{qty}">Quantity Error</p>
-                    </div> -->
+                <div class="fieldError">
+                    <p th:if="${#fields.hasErrors('qty')}" th:errors="*{qty}">Quantity Error</p>
+                    </div>
               </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>
