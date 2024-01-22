@@ -9,13 +9,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.springweb.models.Order;
 import com.github.springweb.models.Search;
 import com.github.springweb.services.OrdersBusinessServiceInterface;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -64,6 +67,18 @@ public class OrderController {
         return "orders";
     }
 
+    @PostMapping("/update")
+    public String put( @Valid Order order, BindingResult bindingResult, Model model) {
+
+        service.updateOrder(order.getId(), order);
+
+        List<Order> orders = service.getOrders();
+
+        model.addAttribute("orders", orders);
+        
+        return "ordersAdmin";
+    }
+
     @GetMapping("/create")
     public String createNewOrder(Model model) {
 
@@ -86,4 +101,29 @@ public class OrderController {
         return "orders";
     }
     
+    @GetMapping("/admin")
+    public String getAdmin(Model model) {
+
+        // generate orders
+
+        // depedency - change later to depedency injection.
+        // OrderBusinessService service = new OrderBusinessService();
+
+       
+        List<Order> orders = service.getOrders();
+        model.addAttribute("orders", orders);
+        return "ordersAdmin";
+    }
+
+    
+
+    @GetMapping("/edit/{id}")
+    public String editPage(@PathVariable(name="id") Long id, Model model) {
+        
+        
+        Order order = service.getbyId(id);
+        model.addAttribute("order", order);
+        
+        return "editForm";
+    }
 }

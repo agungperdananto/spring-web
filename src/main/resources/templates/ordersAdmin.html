@@ -1,0 +1,51 @@
+<html layout:decorate=~{layouts/base}>
+<body>
+    <div layout:fragment="content" class="container pb-3">
+        <h2 th:text="Admin"></h2>
+        <table class="table table-striped mt-3 mb-3">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Order Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="order: ${orders}">
+                <td th:text="${order.id}">id</td>
+                <td th:text="${order.orderNo}">OrderNo</td>
+                <td th:text="${order.productName}">Name</td>
+                <td ><span>πç </span><span th:text=" ${order.price}"></span></td>
+                <td th:text="${order.qty}">Qty</td>
+                <td>
+                    <form action="#" th:action="@{/orders}" th:object="${order}" method="delete">
+                        <input name="id" type="hidden" th:value="${order.id}">
+                        <input name="orderNo"type="hidden" th:value="${order.orderNo}">
+                        <input name="productName"type="hidden" th:value="${order.productName}">
+                        <input name="price" type="hidden" th:value="${order.price}">
+                        <input name="quantity" type="hidden"th:value="${order.qty}">
+                        <button class="btn btn-danger" type="submit" name="deleteOrder">Delete</button>      
+                    </form>
+                </td>
+                <td>
+                    <a th:href="@{/orders/edit/{id}(id=${order.id})}">
+                    <div class="btn btn-secondary">
+                        Edit
+                    </div></a>
+                    <!-- <form action="#" th:action="@{/orders/edit}" th:object="${order}" method="post">
+                        <input name="myid" type="text" th:value="*{id}">
+                        <button href class="btn btn-secondary" type="submit" name="updateOrder">Edit</button>   
+                    </form> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    
+</body>
+</html>
