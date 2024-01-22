@@ -14,13 +14,10 @@ import com.github.springweb.data.OrderDataAccessInterface;
 @Configuration
 public class SpringConfig {
 
-    @Autowired
-    DataSource dataSource;
-
 
     @Bean(name="ordersDAO")
     @RequestScope
     public OrderDataAccessInterface<Order> getDataService() {
-        return new OrderDataServiceForRepository(dataSource);
+        return new OrderDataServiceForRepository();
     }
 }

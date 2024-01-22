@@ -3,17 +3,12 @@ package com.github.springweb.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import com.github.springweb.models.Order;
 import com.github.springweb.models.OrderEntity;
-
-import groovyjarjarantlr4.v4.parse.ANTLRParser.ruleEntry_return;
 
 
 public class OrderDataServiceForRepository implements OrderDataAccessInterface<Order>{
@@ -26,17 +21,10 @@ public class OrderDataServiceForRepository implements OrderDataAccessInterface<O
     @Autowired
     OrderDataAccessInterface<Order> ordersDAO;
 
-    private JdbcTemplate jdbcTemplate;
-
-    public OrderDataServiceForRepository(DataSource dataSource){
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
-
     ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public Order getbyId(long id) {
+    public Order getbyId(String id) {
         
         OrderEntity ordersEntity = ordersRepository.findById(id).orElse(null);
 
@@ -70,7 +58,7 @@ public class OrderDataServiceForRepository implements OrderDataAccessInterface<O
 
     @Override
     public List<Order> searchOrders(String keyword) {
-        Iterable<OrderEntity> orderEntities = ordersRepository.findByProductNameContainingIgnoreCase(keyword);
+        Iterable<OrderEntity> orderEntities = ordersRepository.findByProductName(keyword);
         List<Order> orders = new ArrayList<Order>();
 
         for(OrderEntity entity: orderEntities){
@@ -80,18 +68,18 @@ public class OrderDataServiceForRepository implements OrderDataAccessInterface<O
     }
 
     @Override
-    public long createOrder(Order newOrder) {
+    public String createOrder(Order newOrder) {
         OrderEntity orderEntity = modelMapper.map(newOrder, OrderEntity.class);
         OrderEntity result = ordersRepository.save(orderEntity);
         if (result != null) {
             return result.getId();
         }
 
-        return 0;
+        return null;
     }
 
     @Override
-    public boolean deleteOrder(long id) {
+    public boolean deleteOrder(String id) {
 
         if (ordersRepository.existsById(id)){
             ordersRepository.deleteById(id);
@@ -101,7 +89,7 @@ public class OrderDataServiceForRepository implements OrderDataAccessInterface<O
     }
 
     @Override
-    public Order updateOrder(long id, Order updateOrder) {
+    public Order updateOrder(String id, Order updateOrder) {
         if (ordersRepository.existsById(id)){
             updateOrder.setId(id);
             OrderEntity orderEntity = modelMapper.map(updateOrder, OrderEntity.class);

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Order {
 
-    Long id = 0L;
+    String id;
 
     @NotEmpty(message = "order number can't be null")
     @Size(min=3, message = "password length must not less than 3")

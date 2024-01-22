@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface OrderDataAccessInterface <T>{
 
-    public T getbyId(long id);
+    public T getbyId(String id);
     public List<T> getOrders();
     public List<T> searchOrders(String keyword);
 
-    public long createOrder(T newOrder);
+    public String createOrder(T newOrder);
 
-    public boolean deleteOrder(long id);
+    public boolean deleteOrder(String id);
 
-    public T updateOrder(long id, T updateOrder);
+    public T updateOrder(String id, T updateOrder);
 }

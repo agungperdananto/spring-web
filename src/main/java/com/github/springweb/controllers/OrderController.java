@@ -131,7 +131,7 @@ public class OrderController {
     
 
     @GetMapping("/edit/{id}")
-    public String editPage(@PathVariable(name="id") Long id, @ModelAttribute("loginModel") Order order, Model model) {
+    public String editPage(@PathVariable(name="id") String id, @ModelAttribute("loginModel") Order order, Model model) {
         
         order = service.getbyId(id);
         model.addAttribute("order", order);

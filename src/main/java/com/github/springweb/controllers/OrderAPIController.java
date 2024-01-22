@@ -48,18 +48,18 @@ public class OrderAPIController {
     }
 
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable(name="id") long id) {
+    public Order getOrderById(@PathVariable(name="id") String id) {
         Order order = service.getbyId(id);
         return order;
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteOrder(@PathVariable(name="id") long id) {
+    public boolean deleteOrder(@PathVariable(name="id") String id) {
        return service.deleteOrder(id);
     }
 
     @PutMapping("/{id}")
-    public Order deleteOrder(@PathVariable(name="id") long id, @RequestBody Order updateOrder) {
+    public Order deleteOrder(@PathVariable(name="id") String id, @RequestBody Order updateOrder) {
        return service.updateOrder(id, updateOrder);
     }
     
@@ -79,8 +79,7 @@ public class OrderAPIController {
     }
 
     @PostMapping
-    public Long createOrder(@RequestBody Order newOrder) {
-        
+    public String createOrder(@RequestBody Order newOrder) {
         
         return service.createOrder(newOrder);
     }

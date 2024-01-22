@@ -34,7 +34,7 @@ public class OrderBusinessService implements OrdersBusinessServiceInterface{
     }
 
     @Override
-    public Order getbyId(long id) {
+    public Order getbyId(String id) {
         
         return ordersDAO.getbyId(id);
     }
@@ -45,17 +45,17 @@ public class OrderBusinessService implements OrdersBusinessServiceInterface{
     }
 
     @Override
-    public long createOrder(Order newOrder) {
+    public String createOrder(Order newOrder) {
        return ordersDAO.createOrder(newOrder);
     }
 
     @Override
-    public boolean deleteOrder(long id) {
+    public boolean deleteOrder(String id) {
        return ordersDAO.deleteOrder(id);
     }
 
     @Override
-    public Order updateOrder(long id, Order updateOrder) {
+    public Order updateOrder(String id, Order updateOrder) {
        return ordersDAO.updateOrder(id, updateOrder);
     }
 

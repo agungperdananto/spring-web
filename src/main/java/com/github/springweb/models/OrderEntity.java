@@ -1,32 +1,30 @@
 package com.github.springweb.models;
 
+
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table("orders")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "orders")
 public class OrderEntity {
 
     @Id
-    @Column("id")
-    int id;
+    String id;
 
-    @Column("order_number")
+    @Indexed(unique=true)
     String orderNo = "";
 
-    @Column("product_name")
+    @Indexed(unique=true)
     String  productName = "";
 
-    @Column("price")
     float price = 0;
 
-    @Column("qty")
     int qty = 0;
 }
